@@ -1,0 +1,19 @@
+{
+  "name": "receipt-processor",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "moment": "^2.30.1",
+    "randexp": "^0.5.3",
+    "regexp": "^1.0.0"
+  }
+}
