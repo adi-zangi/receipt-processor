@@ -26,8 +26,13 @@ router.post('/receipts/process', (req, res) => {
  * Returns the number of points awarded for a given a receipt ID
  */
 router.get('/receipts/:id/points', (req, res) => {
-   console.log("Received GET to /receipts/:id/points with params = " + JSON.stringify(req.params))
-   res.status(400).send("Not implemented")
+   const receiptId = req.params.id
+   const points = Receipt.countPoints(receiptId)
+   if (points == null) {
+      res.status(404).send("No receipt found for that id")
+   } else {
+      res.status(200).json({"points": points})
+   }
 })
 
 export default router

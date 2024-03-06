@@ -3,6 +3,7 @@
  */
 
 import * as utils from "./receiptUtils.js"
+import * as awards from "./awardPointsUtils.js"
 
 const receipts = {}
 
@@ -58,4 +59,24 @@ function newReceiptId(receipt) {
    return id
 }
 
-export {isValidReceipt, newReceiptId}
+/**
+ * Gets the number of points to award to the receipt with the given id
+ * @param {String} receiptId - a string id
+ * @returns If the id exists, returns the number of points to award. Otherwise, returns null.
+ */
+function countPoints(receiptId) {
+   const receipt = receipts[receiptId]
+   if (!receipt) {
+      return null
+   }
+   let points = 0
+   points += awards.getRetailerPoints(receipt["retailer"])
+   points += awards.getTotalPoints(receipt["total"])
+   points += awards.getItemsPoints(receipt["items"])
+   points += awards.getDescriptionPoints(receipt["items"])
+   points += awards.getPurchaseDatePoints(receipt["purchaseDate"])
+   points += awards.getPurchaseTimePoints(receipt["purchaseTime"])
+   return points
+}
+
+export {isValidReceipt, newReceiptId, countPoints}
