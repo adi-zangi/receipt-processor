@@ -2,8 +2,7 @@
  * Functions for handling receipts
  */
 
-import {randId, isValidRetailer, isValidPurchaseDate, isValidPurchaseTime, isItemsArrayValid,
-         isValidTotal, isValidShortDescription, isValidPrice} from "./receiptUtils.js"
+import * as utils from "./receiptUtils.js"
 
 const receipts = {}
 
@@ -19,26 +18,26 @@ function isValidReceipt(receipt) {
    if (typeof(receipt) !== "object") {
       return false
    }
-   if (!receipt["retailer"] || !isValidRetailer(receipt["retailer"])) {
+   if (!utils.isValidRetailer(receipt["retailer"])) {
       return false
    }
-   if (!receipt["purchaseDate"] || !isValidPurchaseDate(receipt["purchaseDate"])) {
+   if (!utils.isValidPurchaseDate(receipt["purchaseDate"])) {
       return false
    }
-   if (!receipt["purchaseTime"] || !isValidPurchaseTime(receipt["purchaseTime"])) {
+   if (!utils.isValidPurchaseTime(receipt["purchaseTime"])) {
       return false
    }
-   if (!receipt["total"] || !isValidTotal(receipt["total"])) {
+   if (!utils.isValidTotal(receipt["total"])) {
       return false
    }
-   if (!receipt["items"] || !isItemsArrayValid(receipt["items"])) {
+   if (!utils.isItemsArrayValid(receipt["items"])) {
       return false
    }
    for (const item of receipt["items"]) {
-      if (!item["shortDescription"] || !isValidShortDescription(item["shortDescription"])) {
+      if (!utils.isValidShortDescription(item["shortDescription"])) {
          return false
       }
-      if (!item["price"] || !isValidPrice(item["price"])) {
+      if (!utils.isValidPrice(item["price"])) {
          return false
       }
    }
@@ -50,13 +49,13 @@ function isValidReceipt(receipt) {
  * @param {Object} receipt - an object containing a receipt
  * @returns A string id
  */
-function getReceiptId(receipt) {
-   const id = randId()
+function newReceiptId(receipt) {
+   const id = utils.randId()
    while (receipts[id]) {
-      id = randId()
+      id = utils.randId()
    }
    receipts[id] = receipt
    return id
 }
 
-export {isValidReceipt, getReceiptId}
+export {isValidReceipt, newReceiptId}

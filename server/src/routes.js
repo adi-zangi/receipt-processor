@@ -14,9 +14,9 @@ const router = express.Router()
 router.post('/receipts/process', (req, res) => {
    const receiptJSON = req.body
    if (!Receipt.isValidReceipt(receiptJSON)) {
-      res.status(400).send("Received an invalid receipt: " + JSON.stringify(receiptJSON))
+      res.status(400).send("The receipt is invalid")
    } else {
-      const receiptId = Receipt.getReceiptId(receiptJSON)
+      const receiptId = Receipt.newReceiptId(receiptJSON)
       res.status(200).json({"id": receiptId})
    }
 })

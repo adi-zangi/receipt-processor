@@ -6,7 +6,7 @@ import RandExp from "randexp"
 import moment from "moment"
 
 // Object that generates a new receipt id
-const randIdGen = new RandExp(/^\S+$/)
+const randIdGen = new RandExp(/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/)
 
 // Regular expressions for the receipt items
 const retailerExp = new RegExp(/^[\w\s\-\&]+$/)
@@ -75,7 +75,7 @@ function isValidTotal(total) {
  * @param {Array} items 
  */
 function isItemsArrayValid(items) {
-   if (!isArray(items)) {
+   if (!items || !isArray(items)) {
       return false
    }
    if (items.length < 1) {
