@@ -1,7 +1,7 @@
 # Receipt Processor
 A web service for a receipt processor app.
 
-## Install with docker
+## Install with Docker
 ```
 docker pull adizangi/receipt-processor
 docker run -p 3000:3000 adizangi/receipt-processor
