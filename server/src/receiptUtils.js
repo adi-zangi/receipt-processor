@@ -118,5 +118,13 @@ function isArray(obj) {
    }
 }
 
+function isTotalSumOfItems(totalArray,total) {
+   let sum = 0
+   for (const totalItem of totalArray) {
+      sum += Number(totalItem["price"])
+   }
+   return sum == total
+}
+
 export {randId, isValidRetailer, isValidPurchaseDate, isValidPurchaseTime, isValidTotal,
-         isItemsArrayValid, isValidShortDescription, isValidPrice}
+         isItemsArrayValid, isValidShortDescription, isValidPrice, isTotalSumOfItems}

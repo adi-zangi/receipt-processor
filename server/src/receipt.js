@@ -42,6 +42,9 @@ function isValidReceipt(receipt) {
          return false
       }
    }
+   if (!utils.isTotalSumOfItems(receipt["items"],receipt["total"])) {
+      return false
+   }
    return true
 }
 
