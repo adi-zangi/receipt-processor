@@ -1,6 +1,8 @@
 # Receipt Processor
 A web service for an app that gives reward points by scanning receipts.
 
+It's based on this receipt processor challenge: https://github.com/fetch-rewards/receipt-processor-challenge/tree/main
+
 ## Install with Docker
 ```
 docker pull adizangi/receipt-processor
